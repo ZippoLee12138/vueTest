@@ -15,6 +15,17 @@
       </li>
     </ul>
 
+    <input v-model.trim="input2" />{{ input2}}
+
+    <input v-model="myBox" type="radio" value="apple" />
+    <input v-model="myBox" type="radio" value="banana" />
+    <input v-model="myBox" type="radio" value="orange" />
+    {{myBox}}
+
+    <select v-model="selection">
+      <option v-for="item in selectionOptions" :value="item.name">{{item.name}}</option>
+    </select>
+    {{selection}}
     <!-- <div>
       <ul>
         <li v-for="(value,key) in objList">
@@ -57,9 +68,23 @@ export default {
         'arr-class-2'
       ],
       inputStyle:{
-        'color':'red',
-        'background-color':'green'
-      }
+        'color':'black',
+        'background-color':'#873f82'
+      },
+      input2:0,
+      myBox:[],
+      selection:'',
+      selectionOptions:[
+        {
+          name:'jerry'
+        },
+        {
+          name:'may'
+        },
+        {
+          name:'rechild'
+        }        
+      ]
     }
   },
   components:{ComponentA},
