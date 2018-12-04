@@ -2,11 +2,13 @@
   <div id="app">
     <h1 v-html="title"></h1>
     <p>son tell father :{{sonMsg}}</p>
-    <componentA v-for="value in objList" v-bind:value="value"  msgFromFather="msg from father" v-on:son-tell-father="sonTellMe"></componentA>
-    <input v-model="newItem" v-on:keyup.enter="addNewItem" />
+    <componentA  msgFromFather="msg from father" v-on:son-tell-father="sonTellMe"></componentA>
+    <input v-model="newItem" v-on:keyup.enter="addNewItem" :class="[inputClassArr,inputClass]" :style="inputStyle"/>
 
     <button v-on:click="addItem">addItem</button>
-
+    <a v-if="showBaidu" :href="link" title="百度">to baidu</a>
+    <a v-show="!showBaidu" :href="linkGoogle" title="谷歌">to Google</a>
+    <button v-on:click="toggle">toggle</button>
     <ul>
       <li v-for="(item,index) in items" v-bind:class="{finished: item.finished}" v-on:click="itemTap(item)" v-bind:title="item.label">
         {{index}}-- {{item.label}}
@@ -42,6 +44,21 @@ export default {
         name:'lllll',
         num:222,
         text:'dddd',
+      },
+      link:"https://www.baidu.com",
+      showBaidu:true,
+      linkGoogle:"https://www.google.com",
+      inputClass:{
+        'red-font':true,
+        'blue-font':true
+      },
+      inputClassArr:[
+        'arr-class-1',
+        'arr-class-2'
+      ],
+      inputStyle:{
+        'color':'red',
+        'background-color':'green'
       }
     }
   },
@@ -71,6 +88,9 @@ export default {
         label:'Vue.set',
         finished:true
       })
+    },
+    toggle:function () {
+      this.showBaidu = !this.showBaidu 
     }
   },
   watch:{
