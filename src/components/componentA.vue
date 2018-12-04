@@ -2,6 +2,7 @@
 <div>
     <h2>组件componentA</h2>
     <p v-text="msgFromFather" v-on:click="tapAction"></p>
+    <p>{{value}}</p>
  </div>
 </template>
 
@@ -14,7 +15,8 @@ export default {
         }
     },
     props:[
-        'msgFromFather'
+        'msgFromFather',
+        'value'
     ],
     methods : {
         tapAction () {

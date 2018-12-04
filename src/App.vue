@@ -2,19 +2,33 @@
   <div id="app">
     <h1 v-html="title"></h1>
     <p>son tell father :{{sonMsg}}</p>
-    <component-a msgFromFather="msg from father" v-on:son-tell-father="sonTellMe"></component-a>
+    <componentA v-for="value in objList" v-bind:value="value"  msgFromFather="msg from father" v-on:son-tell-father="sonTellMe"></componentA>
     <input v-model="newItem" v-on:keyup.enter="addNewItem" />
+
+    <button v-on:click="addItem">addItem</button>
+
     <ul>
-      <li v-for="item in items" v-bind:class="{finished: item.finished}" v-on:click="itemTap(item)">
-        {{item.label}}
+      <li v-for="(item,index) in items" v-bind:class="{finished: item.finished}" v-on:click="itemTap(item)" v-bind:title="item.label">
+        {{index}}-- {{item.label}}
       </li>
     </ul>
+
+    <!-- <div>
+      <ul>
+        <li v-for="(value,key) in objList">
+        {{key+':'+value}}
+        </li>
+      </ul>
+    </div> -->
+
   </div>
+
 </template>
 
 <script>
-import Store from "./store.js";
+import Store from "./store.js"
 import ComponentA from "./components/componentA"
+import Vue from "vue"
 
 export default {
   data (){
@@ -23,7 +37,12 @@ export default {
       items : Store.fetch(),
       thisisli:'ddde',
       newItem:'',
-      sonMsg:'none'
+      sonMsg:'none',
+      objList:{
+        name:'lllll',
+        num:222,
+        text:'dddd',
+      }
     }
   },
   components:{ComponentA},
@@ -40,6 +59,18 @@ export default {
     },
     sonTellMe:function (sonMsg) {
      this.sonMsg = sonMsg
+    },
+    addItem:function () {
+      // console.log(this.items);
+      
+      // this.items.push({
+      //   label:'kkkkkk',
+      //   finished:false
+      // })
+      Vue.set(this.items,2,{
+        label:'Vue.set',
+        finished:true
+      })
     }
   },
   watch:{
