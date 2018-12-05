@@ -33,6 +33,13 @@
         </li>
       </ul>
     </div> -->
+    <div>
+      <button v-on:click="deleteStorage">清理缓存</button>
+    </div>
+
+    <div>
+      <input v-model="computedItem"  />{{computedItemWithOutNumber}}
+    </div>
 
   </div>
 
@@ -84,12 +91,23 @@ export default {
         {
           name:'rechild'
         }        
-      ]
+      ],
+      computedItem:'',
+    }
+  },
+  computed:{
+    computedItemWithOutNumber :{
+      get () {
+        return this.computedItem.replace(/\d/g,'')
+      },
+      set (v) {        
+        this.computedItem = '11aa22bb'
+      }
     }
   },
   components:{ComponentA},
   methods :{
-    addNewItem:function () {
+    addNewItem:function () {    
       this.items.push({
         label:this.newItem,
         finished:false
@@ -116,6 +134,14 @@ export default {
     },
     toggle:function () {
       this.showBaidu = !this.showBaidu 
+    },
+    deleteStorage:function () {
+      Store.remove()
+    },
+    computedItemWithOutNumber:function () {
+      console.log(`func : computedItemWithOutNumber`);
+      
+      return this.computedItem.replace(/000/g,'')
     }
   },
   watch:{
