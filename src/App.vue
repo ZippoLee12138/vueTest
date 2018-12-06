@@ -2,7 +2,7 @@
   <div id="app">
     <h1 v-html="title"></h1>
     <p>son tell father :{{sonMsg}}</p>
-    <componentA  msgFromFather="msg from father" v-on:son-tell-father="sonTellMe"></componentA>
+    <component  :is="myComponent" fromFather="from father for componentB"  msgFromFather="msg from father" v-on:son-tell-father="sonTellMe"></component>
     <input v-model="newItem" v-on:keyup.enter="addNewItem" :class="[inputClassArr,inputClass]" :style="inputStyle"/>
 
     <button v-on:click="addItem">addItem</button>
@@ -48,6 +48,7 @@
 <script>
 import Store from "./store.js"
 import ComponentA from "./components/componentA"
+import ComponentB from "./components/componentB";
 import Vue from "vue"
 
 export default {
@@ -93,6 +94,7 @@ export default {
         }        
       ],
       computedItem:'',
+      myComponent:'ComponentB',
     }
   },
   computed:{
@@ -105,7 +107,7 @@ export default {
       }
     }
   },
-  components:{ComponentA},
+  components:{ComponentA, ComponentB},
   methods :{
     addNewItem:function () {    
       this.items.push({
