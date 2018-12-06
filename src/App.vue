@@ -2,7 +2,9 @@
   <div id="app">
     <h1 v-html="title"></h1>
     <p>son tell father :{{sonMsg}}</p>
-    <component  :is="myComponent" fromFather="from father for componentB"  msgFromFather="msg from father" v-on:son-tell-father="sonTellMe"></component>
+    <transition name="fade" mode="out-in">
+      <component  :is="myComponent" fromFather="from father for componentB"  msgFromFather="msg from father" v-on:son-tell-father="sonTellMe"></component>
+    </transition>
     <input v-model="newItem" v-on:keyup.enter="addNewItem" :class="[inputClassArr,inputClass]" :style="inputStyle"/>
 
     <button v-on:click="addItem">addItem</button>
@@ -40,6 +42,13 @@
     <div>
       <input v-model="computedItem"  />{{computedItemWithOutNumber}}
     </div>
+
+    <div>
+      <transition name="fade">
+        <p v-show="show1">过渡效果</p>
+      </transition>
+    </div>
+    <button v-on:click="show1Action">toggle1</button>
 
   </div>
 
@@ -95,6 +104,7 @@ export default {
       ],
       computedItem:'',
       myComponent:'ComponentB',
+      show1:true,
     }
   },
   computed:{
@@ -144,6 +154,11 @@ export default {
       console.log(`func : computedItemWithOutNumber`);
       
       return this.computedItem.replace(/000/g,'')
+    },
+    show1Action:function () {
+      this.show1 = !this.show1
+      this.myComponent = this.myComponent == "ComponentA" ? "ComponentB":"ComponentA"
+
     }
   },
   watch:{
@@ -169,5 +184,13 @@ export default {
 
 .finished{
   text-decoration: line-through;
+}
+
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+
+.fade-enter-active, .fade-leave {
+  transition: opacity .5s ease-out;
 }
 </style>
