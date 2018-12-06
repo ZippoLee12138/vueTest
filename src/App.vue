@@ -40,7 +40,7 @@
     </div>
 
     <div>
-      <input v-model="computedItem"  />{{computedItemWithOutNumber}}
+      <input v-model="computedItem" v-focus=""  />{{computedItemWithOutNumber}}
     </div>
 
     <div>
@@ -49,6 +49,10 @@
       </transition>
     </div>
     <button v-on:click="show1Action">toggle1</button>
+
+    <div>
+      <p v-color=" 'green' ">自定义指令</p>
+    </div>
 
   </div>
 
@@ -167,6 +171,16 @@ export default {
         Store.save(items)
       },
       deep:true
+    }
+  },
+  directives: {
+    color:function (el,binding) {
+      el.style.color = binding.value
+    },
+    focus: {
+      inserted: function (el,binding) {
+        el.focus()
+      }
     }
   }
 }

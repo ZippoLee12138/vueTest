@@ -12,4 +12,14 @@ new Vue({
   router,
   components: { App },
   template: '<App/>'
+  // directives: {
+  //   color: function (el, binding) {
+  //     el.style.color = binding.value
+  //   },
+  //   focus: {
+  //     inserted: function (el, binding) {
+  //       el.focus()
+  //     }
+  //   }
+  // }
 })
