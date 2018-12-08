@@ -54,6 +54,16 @@
       <p v-color=" 'green' ">自定义指令</p>
     </div>
 
+    <router-view></router-view>
+    <router-link :to="{ path : 'Python' }" tag="li">to Python</router-link>
+    <router-link :to="{ path : 'JavaScript' }" tag='button'>to JavaScript</router-link>
+     <router-link :to="{ name : 'es6Compoent' }" tag="a">to JavaScript ES6</router-link>
+
+    <div v-on:click="getParam">
+      {{$route.params.color}}
+    </div>
+    <button v-on:click="getParam">获取参数</button>
+
   </div>
 
 </template>
@@ -109,6 +119,7 @@ export default {
       computedItem:'',
       myComponent:'ComponentB',
       show1:true,
+      paramFromPython:'',
     }
   },
   computed:{
@@ -163,6 +174,11 @@ export default {
       this.show1 = !this.show1
       this.myComponent = this.myComponent == "ComponentA" ? "ComponentB":"ComponentA"
 
+    },
+
+    getParam:function () {
+      console.log(this.$route.params);
+      // this.paramFromPython = this.$route.params
     }
   },
   watch:{
