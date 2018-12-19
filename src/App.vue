@@ -64,6 +64,14 @@
     </div>
     <button v-on:click="getParam">获取参数</button>
 
+
+    <ul>
+      <li v-for="production in productions">
+        <span>{{production.name}}</span>
+        <span>${{production.price}}</span>
+      </li>
+    </ul>
+
   </div>
 
 </template>
@@ -120,6 +128,7 @@ export default {
       myComponent:'ComponentB',
       show1:true,
       paramFromPython:'',
+      productions: this.$vuexStore.state.productions
     }
   },
   computed:{
