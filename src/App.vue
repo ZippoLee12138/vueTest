@@ -128,7 +128,7 @@ export default {
       myComponent:'ComponentB',
       show1:true,
       paramFromPython:'',
-      productions: this.$vuexStore.state.productions
+      productions: this.$store.state.productions
     }
   },
   computed:{

@@ -3,32 +3,17 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import vuexStore from './vuex'
-import Apple from "./components/apple"
-import Banana from "./components/banana"
+import store from './vuex'
+// import Apple from "./components/apple"
+// import Banana from "./components/banana"
 
 Vue.config.productionTip = false
-
-// Vue.use(Router)
-
-// let router = new Router({
-//   routes: [
-//     {
-//       path: '/apple',
-//       component: Apple
-//     },
-//     {
-//       path: '/banana',
-//       component: Banana
-//     }
-//   ]
-// })
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  vuexStore,
+  store,
   components: { App },
   template: '<App/>'
   // directives: {
