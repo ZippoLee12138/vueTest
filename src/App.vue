@@ -71,16 +71,20 @@
         <span>${{production.price}}</span>
       </li>
     </ul>
+    <button @click="kfcSale">肯德基半件</button>
+
+    <VuexComponentA></VuexComponentA>
 
   </div>
 
 </template>
 
 <script>
+import Vue from "vue"
 import Store from "./store.js"
 import ComponentA from "./components/componentA"
-import ComponentB from "./components/componentB";
-import Vue from "vue"
+import ComponentB from "./components/componentB"
+import VuexComponentA from "./components/vuexComponentA"
 
 export default {
   data (){
@@ -128,7 +132,7 @@ export default {
       myComponent:'ComponentB',
       show1:true,
       paramFromPython:'',
-      productions: this.$store.state.productions
+      productions: this.$store.state.KFCList.productions
     }
   },
   computed:{
@@ -141,7 +145,7 @@ export default {
       }
     }
   },
-  components:{ComponentA, ComponentB},
+  components:{ComponentA, ComponentB, VuexComponentA},
   methods :{
     addNewItem:function () {    
       this.items.push({
@@ -188,6 +192,10 @@ export default {
     getParam:function () {
       console.log(this.$route.params);
       // this.paramFromPython = this.$route.params
+    },
+
+    kfcSale () {
+      this.$store.dispatch('saleAction')
     }
   },
   watch:{
