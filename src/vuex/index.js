@@ -47,6 +47,6 @@ export default new Vuex.Store({
     }
   },
   modules: {
-    KFCList,
+    KFCList
   }
 })
